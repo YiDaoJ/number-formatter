@@ -1,6 +1,12 @@
 import { FormatInput, LANGUAGE, Separator } from './static';
 
+/**
+ * @param value input number
+ * @param lang language
+ * @returns the index of decimal separator in input number
+ */
 const getDecimalSeparatorIndex = (value: number, lang: 'DE' | 'EN'): number => {
+  // if input value is integer without decimal separator, return -1
   let index = -1;
 
   index = value
@@ -34,25 +40,24 @@ const format = (
 
   const isGerman = decimal_separator === ',' && thousands_separator === '.';
   const lang = isGerman ? 'DE' : 'EN';
-
   // isFloor when param round is false or input number is negative
   const isFloor = !round || num < 0;
+  const decimalSeparatorIndex = getDecimalSeparatorIndex(num, lang);
 
-  if (isFloor) {
+  if (decimalSeparatorIndex > 0 && isFloor) {
+    // if input value is a decimal number and should be rounded down (floor)
     result = num
       .toLocaleString(LANGUAGE[lang].locale, {
         // use maximumFractionDigits to make sure the decimal digits won't be cut
         maximumFractionDigits: 20,
       })
-      .substring(0, getDecimalSeparatorIndex(num, lang) + 1 + decimal_place);
+      .substring(0, decimalSeparatorIndex + 1 + decimal_place);
   } else {
     result = num.toLocaleString(LANGUAGE[lang].locale, {
       minimumFractionDigits: decimal_place,
       maximumFractionDigits: decimal_place,
     });
   }
-
-  console.log({ result });
   return result;
 };
 
@@ -68,3 +73,5 @@ format(-1.55555, 4);
 format('-1.55555', 4);
 format(1.55555, 3, ',', '.', false);
 format('1.5555', 2);
+
+format(-2);
