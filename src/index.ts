@@ -40,12 +40,12 @@ const format = (
 
   const isGerman = decimal_separator === ',' && thousands_separator === '.';
   const lang = isGerman ? 'DE' : 'EN';
-  // isFloor when param round is false or input number is negative
-  const isFloor = !round || num < 0;
+
+  const useCut = !round || num < 0; // should be cut / trunc when param round is false or input number is negative
   const decimalSeparatorIndex = getDecimalSeparatorIndex(num, lang);
 
-  if (decimalSeparatorIndex > 0 && isFloor) {
-    // if input value is a decimal number and should be rounded down (floor)
+  if (decimalSeparatorIndex > 0 && useCut) {
+    // if input value is a decimal number and should be cut
     result = num
       .toLocaleString(LANGUAGE[lang].locale, {
         // use maximumFractionDigits to make sure the decimal digits won't be cut
@@ -58,6 +58,7 @@ const format = (
       maximumFractionDigits: decimal_place,
     });
   }
+
   return result;
 };
 

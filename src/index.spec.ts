@@ -5,7 +5,7 @@ describe('format', () => {
     expect(format(undefined)).toBe('0,00');
   });
 
-  it('format the value with default options', () => {
+  it('format the value with default option round', () => {
     expect(format(2.555)).toBe('2,56');
     expect(format(10000.5555, 3)).toBe('10.000,556');
     expect(format(100000.28374, 2, ',', '.')).toBe('100.000,28');
