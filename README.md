@@ -55,10 +55,8 @@ Einsetzen in der Produktion:
 | 100000.28374<br />en       | 2          | ,                   | .                    |               | 100.000,28<br />de      |
 | 100000.55555<br />en       | 1          | .                   | ,                    |               | 100,000.6<br />en       |
 | 1.555<br />en              | 10         | ,                   | .                    |               | 1,5550000000<br />de    |
-| -1.55555<br />en           | 4          |                     | Ich                  |               | -1,5555<br />de         |
+| -1.55555<br />en           | 4          |                     |                      |               | -1,5555<br />de         |
 | "-1.55555"<br />string, en | 4          |                     |                      |               | -1,5555<br />de         |
 | 1.55555<br />en            | 3          | ,                   | .                    | false         | 1,555<br />de           |
 | "1.5555"<br />en           | 2          |                     |                      |               | 1,56<br />de            |
 |                            | Default: 2 | Default: ,          | Default: .           | Default: true |                         |
-
-Zweck, Type, Default +
